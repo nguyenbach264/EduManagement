@@ -74,13 +74,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Ensure deployment directory exists on VPS
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USER }}
+          key: ${{ secrets.PROD_SSH_KEY }}
+          port: ${{ secrets.PROD_PORT || 22 }}
+          script: mkdir -p ~/apps/edumanagement
+
       - name: Copy docker-compose.prod.yml to VPS
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.PROD_HOST }}
           username: ${{ secrets.PROD_USER }}
           key: ${{ secrets.PROD_SSH_KEY }}
-          port: 22
+          port: ${{ secrets.PROD_PORT || 22 }}
           source: "docker-compose.prod.yml"
           target: "apps/edumanagement"
 
@@ -90,10 +100,9 @@ jobs:
           host: ${{ secrets.PROD_HOST }}
           username: ${{ secrets.PROD_USER }}
           key: ${{ secrets.PROD_SSH_KEY }}
-          port: 22
+          port: ${{ secrets.PROD_PORT || 22 }}
           script: |
             set -e
-            mkdir -p ~/apps/edumanagement
             cd ~/apps/edumanagement
 
             echo "📥 Kéo các Docker images mới nhất..."
@@ -112,4 +121,4 @@ jobs:
         run: |
           echo "Kiểm tra phản hồi của EduManagement API..."
           sleep 15
-          curl -s -k -f https://edu.nguyenbach.click/health || echo "Waiting for domain DNS and certbot setup"
+          curl -s -k -f http://${{ secrets.PROD_HOST }}:8090/api/v1/actuator/health || curl -s -k -f https://edu.nguyenbach.click/health || echo "Waiting for domain DNS and certbot setup"
