@@ -1,0 +1,12 @@
+target/
+*.class
+*.jar
+*.war
+.idea/
+.vscode/
+*.iml
+*.log
+logs/
+.mvn/timing.properties
+.DS_Store
+Thumbs.db

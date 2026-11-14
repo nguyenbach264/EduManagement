@@ -1,0 +1,144 @@
+# ==============================================================================
+# EduManagement Root .gitignore - Production & VPS Ready
+# ==============================================================================
+
+# ----------------- Environment & Secrets (NEVER COMMIT) -----------------
+.env
+.env.*
+.env*.local
+# Explicitly keep example environment templates tracked
+!.env.example
+!.env.*.example
+
+# SSL/TLS certificates, keystores, and private keys
+*.pem
+*.key
+*.crt
+*.cer
+*.pfx
+*.p12
+*.jks
+*.keystore
+
+# SSH keys
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# ----------------- Database Backups & Local Dumps -----------------
+# Root SQL dump files (avoids committing local DB dumps like init_database_v2.sql)
+# Note: Anchored with leading slash so Flyway migrations in subdirectories remain tracked
+/*.sql
+*.dump
+*.sql.gz
+*.sql.tar
+*.sql.bak
+
+# ----------------- OS Generated Files -----------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# ----------------- IDEs & Editors -----------------
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Visual Studio Code
+.vscode/
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# NetBeans
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+# Sublime Text / Vim
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+*~
+
+# ----------------- Backend (Java / Spring Boot / Maven) -----------------
+target/
+**/target/
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+dependency-reduced-pom.xml
+hs_err_pid*
+replay_pid*
+
+# ----------------- Frontend (Node.js / React / Vite) -----------------
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+dist-ssr/
+build/
+**/build/
+.vite/
+.eslintcache
+.parcel-cache/
+.npm/
+coverage/
+*.tsbuildinfo
+
+# ----------------- Logs & Diagnostic Files -----------------
+logs/
+**/logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# ----------------- Docker & Local Persistence Volumes -----------------
+.docker/
+docker-compose.override.yml
+docker-compose.*.local.yml
+postgres_data/
+**/postgres_data/
+redis_data/
+**/redis_data/
+edumanagement_postgres_data/
+edumanagement_redis_data/
+data/
+**/data/
+uploads/
+**/uploads/
+storage/
+**/storage/
+
+# ----------------- Scratch, AI & Temporary Dumps -----------------
+scratch/
+tmp/
+temp/
+*.tmp
+*.bak

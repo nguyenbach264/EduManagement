@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0;
+  border-color: #e5e7eb;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f4f7fb;
+  color: #0f172a;
+}
+
+/* Custom scrollbar for responsive timetable */
+.timetable-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.timetable-scroll::-webkit-scrollbar-track {
+  background: #eff6ff;
+  border-radius: 9999px;
+}
+
+.timetable-scroll::-webkit-scrollbar-thumb {
+  background: #93c5fd;
+  border-radius: 9999px;
+}
+
+.timetable-scroll::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
+}
+
+/* Exact timetable styles matching Vietnamese university portal screenshot */
+.timetable-grid-table {
+  width: 100%;
+  min-width: 960px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background-color: #ffffff;
+}
+
+/* Ensure collapsed sidebar strictly displays only icons, hiding any overflow text letters */
+.ant-menu-inline-collapsed .ant-menu-title-content {
+  display: none !important;
+}
+
+.ant-menu-inline-collapsed .ant-menu-item {
+  padding-inline: calc(50% - 16px) !important;
+  text-align: center !important;
+  justify-content: center !important;
+}
+
+.ant-menu-inline-collapsed .ant-menu-item .anticon {
+  font-size: 18px !important;
+  margin: 0 auto !important;
+  line-height: 1 !important;
+}
+
+.timetable-grid-table th,
+.timetable-grid-table td {
+  border: 1px solid #e5e7eb;
+}
+
+.timetable-session-header {
+  width: 80px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #ffffff;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+  user-select: none;
+}
+
+.timetable-day-header {
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+  background-color: #f8fafc;
+}
+
+.timetable-cell {
+  padding: 8px;
+  min-height: 110px;
+  vertical-align: top;
+  background-color: #ffffff;
+}
+
+.timetable-card-item {
+  border: 1px solid #789bc7 !important;
+  border-radius: 6px;
+  background-color: #ffffff;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.35;
+  transition: box-shadow 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.timetable-card-item:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  border-color: #5580b3 !important;
+}
+
+.timetable-card-code {
+  font-size: 12px;
+  font-weight: 500;
+  color: #374151;
+  user-select: all;
+}
+
+.timetable-card-drop {
+  color: #dc2626;
+  font-size: 12px;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.timetable-card-drop:hover {
+  color: #b91c1c;
+  transform: scale(1.15);
+}
+
+.timetable-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+  margin-top: 4px;
+  line-height: 1.3;
+}
+
+.timetable-card-period {
+  font-size: 12px;
+  color: #374151;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+.timetable-card-room {
+  font-size: 12px;
+  color: #4b5563;
+  margin-top: 2px;
+  word-break: break-word;
+  line-height: 1.3;
+}
