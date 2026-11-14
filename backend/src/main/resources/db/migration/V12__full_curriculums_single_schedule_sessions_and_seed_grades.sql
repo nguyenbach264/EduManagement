@@ -17,6 +17,20 @@ UPDATE students
 SET department_id = CASE WHEN id % 4 = 3 THEN 15 ELSE 9 + (id % 3) END
 WHERE department_id = 14;
 
+-- Align all student program_id to match their department BEFORE deleting old programs
+UPDATE students
+SET program_id = department_id
+WHERE department_id <= 11;
+
+UPDATE students
+SET program_id = 12
+WHERE department_id = 15;
+
+-- Ensure any student pointing to 13, 14, 15 is safely reassigned
+UPDATE students
+SET program_id = 1
+WHERE program_id IN (13, 14, 15);
+
 -- Remove duplicate programs 13, 14, 15 first to free up unique code 7540101
 DELETE FROM program_courses WHERE program_id IN (13, 14, 15);
 DELETE FROM academic_programs WHERE id IN (13, 14, 15);
@@ -28,15 +42,6 @@ SET code = '7540101',
     department_id = 15, 
     total_credits = 142 
 WHERE id = 12;
-
--- Align all student program_id to match their department
-UPDATE students
-SET program_id = department_id
-WHERE department_id <= 11;
-
-UPDATE students
-SET program_id = 12
-WHERE department_id = 15;
 
 -- 2. Insert comprehensive specialized courses for all departments
 -- --- Department 2 (EE) ---
