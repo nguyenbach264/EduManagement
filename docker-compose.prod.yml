@@ -48,7 +48,7 @@ services:
       - edumanagement-net
 
   backend:
-    image: ${DOCKERHUB_USERNAME:-nguyenbach}/edumanagement-backend:${IMAGE_TAG:-latest}
+    image: ${DOCKERHUB_USERNAME:-nguyenbach264}/edumanagement-backend:${IMAGE_TAG:-latest}
     container_name: edumanagement_backend
     restart: unless-stopped
     depends_on:
@@ -83,16 +83,16 @@ services:
           memory: 380M
 
   frontend:
-    image: ${DOCKERHUB_USERNAME:-nguyenbach}/edumanagement-frontend:${IMAGE_TAG:-latest}
+    image: ${DOCKERHUB_USERNAME:-nguyenbach264}/edumanagement-frontend:${IMAGE_TAG:-latest}
     container_name: edumanagement_frontend
     restart: unless-stopped
     depends_on:
       backend:
         condition: service_healthy
     ports:
-      - "3000:80"
+      - "${FRONTEND_PORT:-5174}:80"
     healthcheck:
-      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost/health"]
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/health"]
       interval: 15s
       timeout: 5s
       retries: 3
